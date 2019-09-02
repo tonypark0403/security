@@ -12,7 +12,7 @@ public class SampleController {
     @GetMapping("/")
     public String index(Model model, Principal principal) {
         if(principal == null) {
-            model.addAttribute("message", "Welcome Message");
+            model.addAttribute("message", "Hello Spring Security");
         } else {
             model.addAttribute("message", "Hello, " + principal.getName());
         }
