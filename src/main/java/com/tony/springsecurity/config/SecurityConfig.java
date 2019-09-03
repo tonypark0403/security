@@ -11,9 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        super.configure(http);
         http.authorizeRequests()
-                .mvcMatchers("/", "info").permitAll()
+                .mvcMatchers("/", "info", "/account/**").permitAll()
                 .mvcMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
@@ -21,12 +20,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        super.configure(auth);
-        auth.inMemoryAuthentication()
-                .withUser("tony").password("{noop}tony123").roles("USER").and()
-                .withUser("admin").password("{noop}admin123").roles("ADMIN");
-    }
-    //noop is encoder for Spring
 }
