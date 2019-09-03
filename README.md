@@ -14,3 +14,4 @@ Customize Spring form
 - [x] Add Spring Security
 - [x] Apply JPA and PasswordEncoder
 - [x] Apply MockMVC test and customize annotation
+- [x] Test transactional annotation
