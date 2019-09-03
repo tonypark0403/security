@@ -5,10 +5,12 @@ Spring boot with Java 11
 ## Description
 
 ```
-Customize spring form
+Customize Spring form
 ```
 
 ### `Todo`
 
 - [x] Initialize project
-- [ ] Add Spring Security
+- [x] Add Spring Security
+- [x] Apply JPA and PasswordEncoder
+- [x] Apply MockMVC test and customize annotation
