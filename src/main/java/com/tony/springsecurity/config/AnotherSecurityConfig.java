@@ -8,18 +8,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableWebSecurity //이건 없어도 상관없음 - 스프링 부트 자동설정이 알아서 추가
-@Order(Ordered.LOWEST_PRECEDENCE - 10)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//@EnableWebSecurity
+@Order(Ordered.LOWEST_PRECEDENCE - 15) //Another먼저 매칭
+public class AnotherSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.authorizeRequests()
+//                .antMatchers("/") //antMatchers는 안주면 모든 matchers에 사용됨
 //                .mvcMatchers("/", "info", "/account/**").permitAll()
-//                .mvcMatchers("/admin").hasRole("ADMIN")
-//                .anyRequest().authenticated();
-                .antMatcher("/account/**")
-                .authorizeRequests()
-                .anyRequest().permitAll(); // 전부 허용으로 AnotherSecurityConfig가 반대로 셋팅
+//                .mvcMatchers("/admin").hasRole("ADMIN"), 즉 모든곳에 인증 필요
+                .anyRequest().authenticated();
 
         http.formLogin();
         http.httpBasic();
